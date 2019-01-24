@@ -100,12 +100,12 @@
  * mode "i" (i == invisible). Invisibility means people dont showup in
  * WHO or NAMES unless they are on the same channel as you.
  */
-#undef	DEFAULT_INVISIBLE
+#define	DEFAULT_INVISIBLE
 
 /* 
  * Define this if you want to have KLINE command for opers and services.
  */
-#undef KLINE
+#define KLINE
 
 /*
  * Define this if you want to have TKLINE and UNTKLINE commands
@@ -114,7 +114,7 @@
 #define TKLINE
 
 /* If you want tklines to be limited in time, define this (seconds). */
-/* #define TKLINE_MAXTIME 86400 */
+ #undef TKLINE_MAXTIME 
 
 /* Choose tkill notices to be sent either to &OPER or &NOTICES */
 /* #define SCH_TKILL SCH_OPER */
@@ -147,7 +147,7 @@
  * 1 server = 1 connection, 1 user = 1 connection.
  * Due to various sanity checks during startup, minimum is 13.
  */
-#define MAXCONNECTIONS	50
+#define MAXCONNECTIONS	10000
 
 /* MAXIMUM LINKS
  *
@@ -176,7 +176,7 @@
  * a server is in class 0 (the default class if none is set).
  *
  */
-#define MAXIMUM_LINKS 1
+#define MAXIMUM_LINKS 3
 
 /*
  * A pure non-routing leaf server can undefine HUB for best performance.
@@ -204,7 +204,7 @@
  *
  * Advised not to use it ;-) --Beeth
  */
-/* #define TIMEDKLINES 300 */
+ #define TIMEDKLINES 60
 
 /*
  * NOTE: defining CMDLINE_CONFIG and installing ircd SUID or SGID is a MAJOR
@@ -231,7 +231,7 @@
  * If file is not absolute path, ircd etc path is prepended.
  * Note that "#include" must be at the beginning of the line.
  */ 
-#undef	CONFIG_DIRECTIVE_INCLUDE
+#include	CONFIG_DIRECTIVE_INCLUDE
 
 /*
  * If you wish to have the server send 'vital' messages about server
@@ -297,18 +297,18 @@
 /*
  * Define this if you want to log failed /oper attempts.
  */
-#undef FAILED_OPERLOG
+#define FAILED_OPERLOG
 
 /*
  * Define this to make ircd create logfiles if they do not exist.
  */
-#undef LOGFILES_ALWAYS_CREATE
+#define LOGFILES_ALWAYS_CREATE
 
 /*
  * Define this if you want to use crypted passwords for operators in your
  * ircd.conf file. See contrib/mkpasswd/README for more details on this.
  */
-#undef	CRYPT_OPER_PASSWORD
+#define	CRYPT_OPER_PASSWORD
 
 /*
  * If you want to store encrypted passwords in N-lines for server links,
@@ -316,7 +316,7 @@
  * need not be the same for both, as long as hte opposite end has the
  * right password in the opposite line.  See INSTALL doc for more details.
  */
-#undef	CRYPT_LINK_PASSWORD
+#define	CRYPT_LINK_PASSWORD
 
 /*
  * define this if you enable summon and if you want summon to look for the
@@ -368,7 +368,7 @@
  * services are not fully implemented yet, so don't use it unless you really
  * know what you are doing.
  */
-#undef USE_SERVICES
+#define USE_SERVICES
 
 /*
  * Define the following to make the delay for nicks random.
@@ -401,7 +401,7 @@
  * NOTE: Undefining this leads to a significant increase in CPU usage if
  * you reject client which keeps connecting.
  */
-#undef	SLOW_ACCEPT
+#define	SLOW_ACCEPT
 
 /*
  * Defining this will make the server check for rapid connections from a single
@@ -443,7 +443,7 @@
 ** Define this to get oper-only &CLIENTS channel with clients connects,
 ** quits and nick changes.
 */
-#undef CLIENTS_CHANNEL
+#define CLIENTS_CHANNEL
 
 /*
 ** Bitmask defining type of information sent to &CLIENTS, combine from
@@ -457,7 +457,7 @@
 ** This adds ability to ban users with specified realnames from
 ** connecting to the server. May be useful for various drones.
 */
-#undef XLINE
+#define XLINE
 
 /*
 ** Define the reason users get as a rejection message.
@@ -478,13 +478,13 @@
 ** do not want to show it at all), define this.
 ** Note that operators will get list of K anyway.
 */
-/* #define TXT_NOSTATSK "Please use http://example.org/klines instead" */
+ #undef TXT_NOSTATSK
 
 /*
 ** If you don't want non-oper clients to see tkline list (like when you run
 ** some service which automatically tklines open proxies), define this.
 */
-/* #undef DISABLE_STATSTKLINE */
+#define DISABLE_STATSTKLINE
 
 /*
 ** If you have problems with two servers autoconnecting to each other
@@ -492,7 +492,7 @@
 ** CPU during AC and it will not allow to try to connect to server that
 ** is trying to connect to you.
 */
-/* #undef DISABLE_DOUBLE_CONNECTS */
+#define DISABLE_DOUBLE_CONNECTS 
 
 /*
 ** Define delimiter of fields in ircd.conf.
@@ -506,7 +506,7 @@
 /*
  * Max number of channels a user is allowed to join.
  */
-#define MAXCHANNELSPERUSER  21	/* Recommended value: 21 */
+define MAXCHANNELSPERUSER  50	/* Recommended value: 21 */
 
 /*
  * USE_IAUTH makes ircd use the iauth program for authentication.
@@ -558,14 +558,14 @@
  * placing restrictions on where people can become operator from.
  * Dubious consideration, IMO.
  */
-#undef	NO_OPER_REMOTE
+#define	NO_OPER_REMOTE
 
 /*
 ** CLCHNO defines changes in local clients count, which are shown
 ** as "Local in/de-crease"
 ** I guess rule of thumb would be 5% of your average user count. --B.
 */
-#define CLCHNO 100
+#define CLCHNO 20
 
 /*
 ** CLCHSEC defines minimum time in seconds between two consecutive
@@ -577,7 +577,7 @@
 ** Define this to allow MOTD for unregistered clients. Note that this is
 ** required by some European countries laws.
 */
-#undef MOTD_UNREG
+#define MOTD_UNREG
 
 /*
 ** For standard "Gone" away reply for remote clients, undefine this.
@@ -602,7 +602,7 @@
 ** own, enable this. Useful for server "clusters", like 0PN. Requires also
 ** proper ACLs in O-line.
 */
-#undef ENABLE_SIDTRACE
+#define ENABLE_SIDTRACE
 
 /*   STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP  */
 /* You shouldn't change anything below this line, unless absolutely needed. */
@@ -729,13 +729,13 @@
 ** If you don't feel your users should use too long nicknames, you can
 ** restrict length of their dnicks here.
 */
-#define LOCALNICKLEN 15
+#define LOCALNICKLEN 30
 
 /*
 ** If you don't want your users to have too short nicknames, define
 ** minimum nicklen allowed.
 */
-/* #define MINLOCALNICKLEN 2 */
+#define MINLOCALNICKLEN 1 
 
 /*
 ** You probably don't want to disable it, but if you run into any problems,
