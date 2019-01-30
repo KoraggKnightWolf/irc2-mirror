@@ -254,7 +254,7 @@ exec 6>&1
 #
 # Initializations.
 #
-ac_default_prefix=$HOME/ircd
+ac_default_prefix=${HOME}/ircd
 ac_config_libobj_dir=.
 cross_compiling=no
 subdirs=
